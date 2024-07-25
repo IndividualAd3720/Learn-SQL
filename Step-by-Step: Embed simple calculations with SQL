@@ -1,0 +1,33 @@
+-- SELECT Date FROM `unique-acronym-418105.avocado_data.avocado_prices` LIMIT 1000
+
+SELECT
+
+Date, 
+Region,
+Small_Bags,
+Large_Bags,
+XLarge_Bags,
+Total_Bags,Small_Bags + Large_Bags + XLarge_Bags AS Total_Bags_Calc,
+(Small_Bags / Total_Bags)*100
+
+FROM `unique-acronym-418105.avocado_data.avocado_prices`
+
+WHERE
+	Total_Bags <>0
+
+
+-- Below shows the case method instead of WHEN statement as an alternative solution to division by zero problem
+--
+-- SELECT
+--     Date, 
+--     Region,
+--     Small_Bags,
+--     Large_Bags,
+--     XLarge_Bags,
+--     Total_Bags,
+--     Small_Bags + Large_Bags + XLarge_Bags AS Total_Bags_Calc,
+--     CASE 
+--         WHEN Total_Bags != 0 THEN (Small_Bags / Total_Bags) * 100
+--         ELSE 0
+--     END AS Small_Bags_Percentage
+-- FROM `unique-acronym-418105.avocado_data.avocado_prices`
